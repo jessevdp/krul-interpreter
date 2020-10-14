@@ -7,8 +7,8 @@ include_directories(${CMAKE_SOURCE_DIR}/vendor)
 find_package(Catch2 REQUIRED)
 
 target_link_libraries(unit_tests
-    PUBLIC library
-    Catch2::Catch2)
+        PUBLIC library
+        Catch2::Catch2)
 
 include(CTest)
 include(Catch)
