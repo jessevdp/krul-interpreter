@@ -8,14 +8,12 @@ Include(FetchContent)
 FetchContent_Declare(
         Catch2
         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG v2.1.0)
-#FetchContent_MakeAvailable(Catch2)
-
-find_package(Catch2 REQUIRED)
+        GIT_TAG v2.2.2)
+FetchContent_MakeAvailable(Catch2)
 
 target_link_libraries(unit_tests
         PUBLIC library
-        Catch2::Catch2)
+        Catch2::Catch)
 
 include(CTest)
 include(Catch)
