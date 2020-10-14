@@ -1,8 +1,8 @@
 #pragma once
 
+#include <exception>
 #include <memory>
 #include <string>
-#include <exception>
 
 namespace krul::http {
 
@@ -12,14 +12,14 @@ namespace krul::http {
   class HTTPResponse {
   private:
     std::string _url;
-    long _response_code;
-    std::string _response_body;
+    long _code;
+    std::string _body;
 
   public:
     HTTPResponse(const std::string& url, long response_code, const std::string& response_body);
-    std::string url();
-    long response_code();
-    std::string response_body();
+    std::string url() const;
+    long code() const;
+    std::string body() const;
   };
 
   /**
@@ -32,6 +32,7 @@ namespace krul::http {
 
   public:
     HTTPException(long response_code, std::string message);
+    long response_code() const noexcept;
     const char* what() const noexcept override;
   };
 
@@ -41,13 +42,13 @@ namespace krul::http {
   class HTTPGetter {
   public:
     HTTPGetter() = default;
-    virtual ~HTTPGetter() = default;
+    virtual ~HTTPGetter() noexcept = default;
 
     /**
      * Configure the base_url. This value will be prepended to future requests urls.
      * @param base_url
      */
-    virtual void set_base_url(std::string base_url) = 0;
+    virtual void set_base_url(const std::string& base_url) = 0;
 
     /**
      * Perform an HTTP GET request to the given URL. If a base_url is configured, it is prepended to the given url.
@@ -55,6 +56,7 @@ namespace krul::http {
      * @throws HTTPException
      * @return HTTPResponse
      */
-    virtual std::unique_ptr<HTTPResponse> get(std::string url) const = 0;
+    virtual std::unique_ptr<HTTPResponse> get(const std::string& url) const = 0;
   };
-}
+
+} // namespace krul::http
