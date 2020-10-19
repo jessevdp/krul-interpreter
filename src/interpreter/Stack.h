@@ -6,7 +6,6 @@ namespace krul::interpreter {
 
   class Stack {
   public:
-    Stack() = default;
     virtual ~Stack() noexcept = default;
 
     virtual void push(value_t item) = 0;

@@ -10,7 +10,6 @@ namespace krul::interpreter {
 
   class Context {
   public:
-    Context() = default;
     virtual ~Context() noexcept = default;
 
     virtual Stack& stack() const noexcept = 0;

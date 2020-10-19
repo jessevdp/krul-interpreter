@@ -8,7 +8,6 @@ namespace krul::interpreter {
 
   class VariableRegistry {
   public:
-    VariableRegistry() = default;
     virtual ~VariableRegistry() noexcept = default;
 
     /**
@@ -17,14 +16,14 @@ namespace krul::interpreter {
      * @param variable reference/name
      * @return
      */
-    virtual value_t get(variable_t variable) const;
+    virtual value_t get(variable_t variable) const = 0;
 
     /**
      * Set a variable (reference/name) to a value. Overwrites the previous value if it was there.
      * @param variable reference/name
      * @param value
      */
-    virtual void set(variable_t variable, value_t value);
+    virtual void set(variable_t variable, value_t value) = 0;
   };
 
 }

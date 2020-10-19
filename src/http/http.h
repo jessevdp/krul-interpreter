@@ -17,9 +17,9 @@ namespace krul::http {
 
   public:
     HTTPResponse(std::string url, long response_code, std::string response_body);
-    std::string url() const;
-    long code() const;
-    std::string body() const;
+    [[nodiscard]] std::string url() const;
+    [[nodiscard]] long code() const;
+    [[nodiscard]] std::string body() const;
   };
 
   /**
@@ -41,7 +41,6 @@ namespace krul::http {
    */
   class HTTPGetter {
   public:
-    HTTPGetter() = default;
     virtual ~HTTPGetter() noexcept = default;
 
     /**
