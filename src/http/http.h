@@ -16,24 +16,24 @@ namespace krul::http {
     std::string _body;
 
   public:
-    HTTPResponse(const std::string& url, long response_code, const std::string& response_body);
+    HTTPResponse(std::string url, long response_code, std::string response_body);
     std::string url() const;
     long code() const;
     std::string body() const;
   };
 
   /**
-   * Simple custom exception to indicate errors in HTTP request.
+   * Simple custom exception to indicate HTTP errors.
    */
-  class HTTPException : public std::exception {
+  class HTTPException : public std::exception, public HTTPResponse {
   private:
     std::string _message;
-    long _response_code;
 
   public:
-    HTTPException(long response_code, std::string message);
-    long response_code() const noexcept;
-    const char* what() const noexcept override;
+    HTTPException(const std::string& url, long response_code, const std::string& response_body,
+                  std::string message = "");
+    explicit HTTPException(const HTTPResponse& response, std::string message = "");
+    [[nodiscard]] const char* what() const noexcept override;
   };
 
   /**
@@ -56,7 +56,7 @@ namespace krul::http {
      * @throws HTTPException
      * @return HTTPResponse
      */
-    virtual std::unique_ptr<HTTPResponse> get(const std::string& url) const = 0;
+    [[nodiscard]] virtual std::unique_ptr<HTTPResponse> get(const std::string& url) const = 0;
   };
 
 } // namespace krul::http

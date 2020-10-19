@@ -1,9 +1,11 @@
-#include "HTTPGetter.h"
+#include "http.h"
+
+#include <utility>
 
 namespace krul::http {
 
-  HTTPResponse::HTTPResponse(const std::string& url, long response_code, const std::string& response_body)
-      : _url {url}, _code {response_code}, _body {response_body} {
+  HTTPResponse::HTTPResponse(std::string url, long response_code, std::string response_body)
+      : _url {std::move(url)}, _code {response_code}, _body {std::move(response_body)} {
   }
 
   std::string HTTPResponse::url() const {

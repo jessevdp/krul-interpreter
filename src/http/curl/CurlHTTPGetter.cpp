@@ -33,16 +33,21 @@ namespace krul::http {
     long response_code;
     auto full_url = prepend_url(url);
 
-    std::unique_ptr<CURL, void(*)(CURL*)> curl {curl_easy_init(), curl_easy_cleanup};
+    std::unique_ptr<CURL, void (*)(CURL*)> curl {curl_easy_init(), curl_easy_cleanup};
     curl_easy_setopt(curl.get(), CURLOPT_URL, full_url.c_str());
     curl_easy_setopt(curl.get(), CURLOPT_WRITEFUNCTION, writeFunction);
     curl_easy_setopt(curl.get(), CURLOPT_WRITEDATA, &response_string);
+    curl_easy_setopt(curl.get(), CURLOPT_FAILONERROR, 1L);
 
-    curl_easy_perform(curl.get());
+    CURLcode curl_status = curl_easy_perform(curl.get());
 
     curl_easy_getinfo(curl.get(), CURLINFO_RESPONSE_CODE, &response_code);
 
-    return std::make_unique<HTTPResponse>(full_url, response_code, response_string);
+    auto response = std::make_unique<HTTPResponse>(full_url, response_code, response_string);
+
+    if (curl_status != CURLE_OK) throw HTTPException(*response);
+
+    return response;
   }
 
 } // namespace krul::http

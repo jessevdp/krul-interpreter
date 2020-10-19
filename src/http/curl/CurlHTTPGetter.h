@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HTTPGetter.h"
+#include "http/http.h"
 
 #include <curl/curl.h>
 #include <memory>
