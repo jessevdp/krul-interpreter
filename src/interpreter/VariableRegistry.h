@@ -26,4 +26,4 @@ namespace krul::interpreter {
     virtual void set(variable_t variable, value_t value) = 0;
   };
 
-}
+} // namespace krul::interpreter

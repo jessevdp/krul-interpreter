@@ -11,4 +11,4 @@ namespace krul::interpreter::instructions {
     context.stack().push(_value);
   }
 
-}
+} // namespace krul::interpreter::instructions

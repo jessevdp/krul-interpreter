@@ -9,4 +9,4 @@ namespace krul::interpreter::instructions {
     value_t value = std::to_string(_label);
     context.stack().push(value);
   }
-}
+} // namespace krul::interpreter::instructions

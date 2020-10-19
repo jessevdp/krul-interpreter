@@ -1,11 +1,11 @@
 #include "Rot13.h"
 
-#include <vector>
 #include <locale>
+#include <vector>
 
 static const int ROTATION_VALUE {13};
 static const std::vector<char> ALPHABET {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-                                   'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+                                         'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
 static size_t alphabet_index(char c) {
   auto it = std::find(ALPHABET.begin(), ALPHABET.end(), c);

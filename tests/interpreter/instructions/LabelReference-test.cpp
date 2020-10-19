@@ -1,6 +1,6 @@
-#include "interpreter/instructions/LabelReference.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
+#include "interpreter/instructions/LabelReference.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>

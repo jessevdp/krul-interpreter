@@ -9,4 +9,4 @@ namespace krul::interpreter::instructions {
     context.stack().push(result);
   }
 
-}
+} // namespace krul::interpreter::instructions

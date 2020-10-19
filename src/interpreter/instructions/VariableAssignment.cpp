@@ -12,4 +12,4 @@ namespace krul::interpreter::instructions {
     context.variables().set(_variable, value);
   }
 
-}
+} // namespace krul::interpreter::instructions

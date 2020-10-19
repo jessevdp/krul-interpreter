@@ -1,6 +1,6 @@
-#include "interpreter/instructions/Negate.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
+#include "interpreter/instructions/Negate.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>

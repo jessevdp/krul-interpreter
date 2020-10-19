@@ -7,4 +7,4 @@ namespace krul::interpreter {
   typedef line_t label_t;
   typedef std::string value_t;
   typedef std::string variable_t;
-}
+} // namespace krul::interpreter

@@ -1,6 +1,6 @@
-#include "interpreter/instructions/StringLiteral.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
+#include "interpreter/instructions/StringLiteral.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>

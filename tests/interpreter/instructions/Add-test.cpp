@@ -1,6 +1,6 @@
-#include "interpreter/instructions/Add.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
+#include "interpreter/instructions/Add.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>
@@ -15,9 +15,7 @@ TEST_CASE("Add pops two integers off the Stack, adds them, and pushes the result
 
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
-  When(Method(stackMock, pop_as_int))
-    .Return(a)
-    .Return(b);
+  When(Method(stackMock, pop_as_int)).Return(a).Return(b);
 
   Mock<Context> contextMock;
   When(Method(contextMock, stack)).AlwaysReturn(stackMock.get());

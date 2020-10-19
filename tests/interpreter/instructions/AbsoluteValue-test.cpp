@@ -1,6 +1,6 @@
-#include "interpreter/instructions/AbsoluteValue.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
+#include "interpreter/instructions/AbsoluteValue.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>
@@ -9,7 +9,9 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("AbsoluteValue pops one integer off the Stack, calculates its absolute value, and pushes that back on the Stack", "[AbsoluteValue]") {
+TEST_CASE(
+  "AbsoluteValue pops one integer off the Stack, calculates its absolute value, and pushes that back on the Stack",
+  "[AbsoluteValue]") {
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
 

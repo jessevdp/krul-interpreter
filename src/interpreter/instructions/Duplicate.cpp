@@ -7,4 +7,4 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
-}
+} // namespace krul::interpreter::instructions

@@ -9,7 +9,9 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("Index pops 2 values off the Stack (index, value), and pushes the character at index of value back on the Stack", "[Index]") {
+TEST_CASE(
+  "Index pops 2 values off the Stack (index, value), and pushes the character at index of value back on the Stack",
+  "[Index]") {
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
   When(Method(stackMock, pop_as_int)).Return(8);
