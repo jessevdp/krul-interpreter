@@ -1,16 +1,18 @@
 #pragma once
 
 #include "http/http.h"
+#include "CurlWrapper.h"
 
 #include <curl/curl.h>
 #include <memory>
 #include <string>
 
-namespace krul::http {
+namespace krul::http::curl {
 
   class CurlHTTPGetter : public HTTPGetter {
   private:
     std::string _base_url;
+    CurlWrapper _curl;
 
   public:
     /**
@@ -24,12 +26,11 @@ namespace krul::http {
      */
     explicit CurlHTTPGetter(std::string base_url);
 
-    ~CurlHTTPGetter() noexcept override;
     void set_base_url(const std::string& base_url) override;
     [[nodiscard]] std::unique_ptr<HTTPResponse> get(const std::string& url) const override;
 
   private:
-    std::string prepend_url(const std::string& url) const;
+    [[nodiscard]] std::string prepend_url(const std::string& url) const;
   };
 
-} // namespace krul::http
+} // namespace krul::http::curl

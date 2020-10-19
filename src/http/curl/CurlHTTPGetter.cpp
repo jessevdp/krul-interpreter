@@ -7,17 +7,12 @@ static size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* d
   return size * nmemb;
 }
 
-namespace krul::http {
+namespace krul::http::curl {
 
   CurlHTTPGetter::CurlHTTPGetter() : CurlHTTPGetter("") {
   }
 
   CurlHTTPGetter::CurlHTTPGetter(std::string base_url) : _base_url {std::move(base_url)} {
-    curl_global_init(CURL_GLOBAL_ALL);
-  }
-
-  CurlHTTPGetter::~CurlHTTPGetter() noexcept {
-    curl_global_cleanup();
   }
 
   void CurlHTTPGetter::set_base_url(const std::string& base_url) {
@@ -33,15 +28,15 @@ namespace krul::http {
     long response_code;
     auto full_url = prepend_url(url);
 
-    std::unique_ptr<CURL, void (*)(CURL*)> curl {curl_easy_init(), curl_easy_cleanup};
-    curl_easy_setopt(curl.get(), CURLOPT_URL, full_url.c_str());
-    curl_easy_setopt(curl.get(), CURLOPT_WRITEFUNCTION, writeFunction);
-    curl_easy_setopt(curl.get(), CURLOPT_WRITEDATA, &response_string);
-    curl_easy_setopt(curl.get(), CURLOPT_FAILONERROR, 1L);
+    auto session = _curl.createSession();
+    curl_easy_setopt(session.get(), CURLOPT_URL, full_url.c_str());
+    curl_easy_setopt(session.get(), CURLOPT_WRITEFUNCTION, writeFunction);
+    curl_easy_setopt(session.get(), CURLOPT_WRITEDATA, &response_string);
+    curl_easy_setopt(session.get(), CURLOPT_FAILONERROR, 1L);
 
-    CURLcode curl_status = curl_easy_perform(curl.get());
+    CURLcode curl_status = curl_easy_perform(session.get());
 
-    curl_easy_getinfo(curl.get(), CURLINFO_RESPONSE_CODE, &response_code);
+    curl_easy_getinfo(session.get(), CURLINFO_RESPONSE_CODE, &response_code);
 
     auto response = std::make_unique<HTTPResponse>(full_url, response_code, response_string);
 
@@ -50,4 +45,4 @@ namespace krul::http {
     return response;
   }
 
-} // namespace krul::http
+} // namespace krul::http::curl
