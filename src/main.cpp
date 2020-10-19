@@ -1,41 +1,33 @@
-#include "hello.h"
+#include "http/curl/CurlHTTPGetter.h"
+#include "http/http.h"
 
-#include <curl/curl.h>
 #include <iostream>
-#include <string>
+#include <memory>
 
-size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* data) {
-  data->append(( char* )ptr, size * nmemb);
-  return size * nmemb;
+using namespace krul::http;
+using namespace krul::http::curl;
+
+void log_response(const HTTPResponse& response, bool show_body = true) {
+  std::cout << "GET " << response.url() << " (" << response.code() << ")" << std::endl;
+  std::cout << std::endl;
+  if (show_body) {
+    std::cout << response.body();
+    std::cout << std::endl;
+  }
+}
+
+void get(const HTTPGetter& http, const std::string& url) {
+  try {
+    auto response = http.get(url);
+    log_response(*response);
+  } catch (const HTTPException& httpException) {
+    std::cout << "ERROR" << std::endl;
+    log_response(httpException, false);
+  }
 }
 
 int main() {
-  auto curl = curl_easy_init();
-  if (curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "https://www.swiftcoder.nl/cpp1/start.txt");
-    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
-    curl_easy_setopt(curl, CURLOPT_USERPWD, "user:pass");
-    curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/7.42.0");
-    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
-    curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
-
-    std::string response_string;
-    std::string header_string;
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
-    curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
-
-    char* url;
-    long response_code;
-    double elapsed;
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-    curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, &elapsed);
-    curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &url);
-
-    curl_easy_perform(curl);
-    curl_easy_cleanup(curl);
-    curl = NULL;
-
-    std::cout << response_string;
-  }
+  std::unique_ptr<HTTPGetter> http = std::make_unique<CurlHTTPGetter>("https://www.swiftcoder.nl/cpp1/");
+  get(*http, "bogus.txt");
+  get(*http, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt");
 }
