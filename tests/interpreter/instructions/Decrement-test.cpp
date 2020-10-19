@@ -1,4 +1,4 @@
-#include "interpreter/instructions/LabelReference.h"
+#include "interpreter/instructions/Decrement.h"
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
 
@@ -9,14 +9,18 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("LabelReference pushes its label value (line #) (converted to a string) to the Stack", "[LabelReference]") {
+TEST_CASE("Decrement pops one integer off the Stack, decrements it by 1, and pushes that back on the Stack", "[Decrement]") {
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
+  When(Method(stackMock, pop_as_int)).AlwaysReturn(10);
+
   Mock<Context> contextMock;
   When(Method(contextMock, stack)).AlwaysReturn(stackMock.get());
 
-  LabelReference instruction {11};
+  Decrement instruction;
   instruction.execute(contextMock.get());
 
-  Verify(Method(stackMock, push).Using("11")).Once();
+  Verify(Method(stackMock, pop_as_int)).Once();
+  Verify(Method(stackMock, push).Using("9")).Once();
+
 }
