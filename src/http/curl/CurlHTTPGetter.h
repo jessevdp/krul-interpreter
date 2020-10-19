@@ -1,7 +1,7 @@
 #pragma once
 
-#include "http/http.h"
 #include "CurlWrapper.h"
+#include "http/http.h"
 
 #include <curl/curl.h>
 #include <memory>
