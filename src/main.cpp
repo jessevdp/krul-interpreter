@@ -5,6 +5,7 @@
 #include <memory>
 
 using namespace krul::http;
+using namespace krul::http::curl;
 
 void log_response(const HTTPResponse& response, bool show_body = true) {
   std::cout << "GET " << response.url() << " (" << response.code() << ")" << std::endl;
