@@ -1,5 +1,6 @@
 #include "Rot13.h"
 
+#include <algorithm>
 #include <locale>
 #include <vector>
 
