@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CallStack.h"
 #include "Stack.h"
 #include "VariableRegistry.h"
 #include "types.h"
@@ -12,8 +13,9 @@ namespace krul::interpreter {
   public:
     virtual ~Context() noexcept = default;
 
-    virtual Stack& stack() const noexcept = 0;
-    virtual VariableRegistry& variables() const noexcept = 0;
+    virtual Stack& stack() const = 0;
+    virtual VariableRegistry& variables() const = 0;
+    virtual CallStack& call_stack() const = 0;
 
     /**
      * Set the line # that determines which instruction is executed next.
