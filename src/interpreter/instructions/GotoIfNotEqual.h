@@ -9,5 +9,4 @@ namespace krul::interpreter::instructions {
     void execute(Context& context) const override;
   };
 
-}
-
+} // namespace krul::interpreter::instructions

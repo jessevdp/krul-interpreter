@@ -1,6 +1,7 @@
+#include "interpreter/instructions/GotoIfGreater.h"
+
 #include "interpreter/Context.h"
 #include "interpreter/Stack.h"
-#include "interpreter/instructions/GotoIfGreater.h"
 
 #include <catch.hpp>
 #include <fakeit.hpp>
@@ -9,7 +10,9 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("GotoIfGreater pops 3 values off the Stack (label, a, b), interprets a & b as int, if (a > b) it executes a go_to_line on the Context", "[GotoIfGreater]") {
+TEST_CASE("GotoIfGreater pops 3 values off the Stack (label, a, b), interprets a & b as int, if (a > b) it executes a "
+          "go_to_line on the Context",
+          "[GotoIfGreater]") {
   label_t label = 1;
 
   Mock<Stack> stackMock;
@@ -22,25 +25,19 @@ TEST_CASE("GotoIfGreater pops 3 values off the Stack (label, a, b), interprets a
   GotoIfGreater instruction;
 
   SECTION("a < b -> no jump") {
-    When(Method(stackMock, pop_as_int))
-      .Return(1)
-      .Return(100);
+    When(Method(stackMock, pop_as_int)).Return(1).Return(100);
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line)).Never();
   }
 
   SECTION("a = b -> no jump") {
-    When(Method(stackMock, pop_as_int))
-      .Return(1)
-      .Return(1);
+    When(Method(stackMock, pop_as_int)).Return(1).Return(1);
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line)).Never();
   }
 
   SECTION("a > b -> jump") {
-    When(Method(stackMock, pop_as_int))
-      .Return(100)
-      .Return(1);
+    When(Method(stackMock, pop_as_int)).Return(100).Return(1);
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line).Using(label)).Once();
   }

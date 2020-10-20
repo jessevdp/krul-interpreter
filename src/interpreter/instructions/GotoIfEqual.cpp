@@ -7,9 +7,7 @@ namespace krul::interpreter::instructions {
     value_t a = context.stack().pop();
     value_t b = context.stack().pop();
 
-    if (a == b) {
-      context.go_to_line(label);
-    }
+    if (a == b) { context.go_to_line(label); }
   }
 
-}
+} // namespace krul::interpreter::instructions

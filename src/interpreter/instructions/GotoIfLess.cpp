@@ -7,9 +7,7 @@ namespace krul::interpreter::instructions {
     int a = context.stack().pop_as_int();
     int b = context.stack().pop_as_int();
 
-    if (a < b) {
-      context.go_to_line(label);
-    }
+    if (a < b) { context.go_to_line(label); }
   }
 
-}
+} // namespace krul::interpreter::instructions

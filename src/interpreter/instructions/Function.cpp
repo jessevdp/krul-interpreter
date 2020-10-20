@@ -8,4 +8,4 @@ namespace krul::interpreter::instructions {
     Goto::execute(context);
   }
 
-}
+} // namespace krul::interpreter::instructions

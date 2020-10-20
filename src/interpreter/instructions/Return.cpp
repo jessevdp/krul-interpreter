@@ -7,4 +7,4 @@ namespace krul::interpreter::instructions {
     context.go_to_line(return_line);
   }
 
-}
+} // namespace krul::interpreter::instructions

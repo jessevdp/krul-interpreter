@@ -9,7 +9,8 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("GotoIfEqual pops 3 values off the Stack (label, a, b), if (a == b) it executes a go_to_line on the Context", "[GotoIfEqual]") {
+TEST_CASE("GotoIfEqual pops 3 values off the Stack (label, a, b), if (a == b) it executes a go_to_line on the Context",
+          "[GotoIfEqual]") {
   label_t label = 1;
 
   Mock<Stack> stackMock;
@@ -22,17 +23,13 @@ TEST_CASE("GotoIfEqual pops 3 values off the Stack (label, a, b), if (a == b) it
   GotoIfEqual instruction;
 
   SECTION("a == b -> jump") {
-    When(Method(stackMock, pop))
-      .Return("hello")
-      .Return("hello");
+    When(Method(stackMock, pop)).Return("hello").Return("hello");
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line).Using(label)).Once();
   }
 
   SECTION("a != b -> no jump") {
-    When(Method(stackMock, pop))
-      .Return("hello")
-      .Return("not hello");
+    When(Method(stackMock, pop)).Return("hello").Return("not hello");
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line)).Never();
   }

@@ -10,7 +10,9 @@ using namespace krul::interpreter;
 using namespace krul::interpreter::instructions;
 using namespace fakeit;
 
-TEST_CASE("Function pushes the current line + 1 to the call stack, pops one value off the stack and interprets it as label, and executes a go_to_line to that label on the Context", "[Function]") {
+TEST_CASE("Function pushes the current line + 1 to the call stack, pops one value off the stack and interprets it as "
+          "label, and executes a go_to_line to that label on the Context",
+          "[Function]") {
   label_t label = 10;
 
   Mock<CallStack> callStackMock;
