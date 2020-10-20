@@ -10,4 +10,4 @@ namespace krul::interpreter {
     virtual void execute(Context& context) const = 0;
   };
 
-}
+} // namespace krul::interpreter

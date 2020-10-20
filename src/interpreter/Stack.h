@@ -16,4 +16,4 @@ namespace krul::interpreter {
     virtual int peek_as_int() const = 0;
   };
 
-}
+} // namespace krul::interpreter
