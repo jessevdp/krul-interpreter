@@ -1,5 +1,7 @@
 #include "Reverse.h"
 
+#include <algorithm>
+
 namespace krul::interpreter::instructions {
 
   void Reverse::execute(Context& context) const {
