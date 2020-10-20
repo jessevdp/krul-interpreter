@@ -14,6 +14,9 @@ namespace krul::interpreter {
 
     virtual int pop_as_int() = 0;
     virtual int peek_as_int() const = 0;
+
+    virtual label_t pop_as_label() = 0;
+    virtual label_t peek_as_label() = 0;
   };
 
 } // namespace krul::interpreter
