@@ -11,4 +11,4 @@ namespace krul::interpreter::exception {
     TypeConversionException(const std::string& value, const std::string& type_name);
   };
 
-}
+} // namespace krul::interpreter::exception

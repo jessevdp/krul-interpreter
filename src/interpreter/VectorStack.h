@@ -27,4 +27,4 @@ namespace krul::interpreter {
     static label_t convert_to_label(const value_t& item);
   };
 
-}
+} // namespace krul::interpreter

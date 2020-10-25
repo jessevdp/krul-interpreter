@@ -13,4 +13,4 @@ namespace krul::interpreter {
     return item;
   }
 
-}
+} // namespace krul::interpreter

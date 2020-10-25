@@ -1,7 +1,7 @@
 #include "VectorStack.h"
 
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace krul::interpreter {
   using namespace exception;
@@ -45,9 +45,9 @@ namespace krul::interpreter {
   }
 
   label_t VectorStack::convert_to_label(const value_t& item) {
-      int item_as_number = convert_to_int(item);
-      if (item_as_number < 0) throw TypeConversionException(item, "label_t");
-      return item_as_number;
+    int item_as_number = convert_to_int(item);
+    if (item_as_number < 0) throw TypeConversionException(item, "label_t");
+    return item_as_number;
   }
 
   void VectorStack::throw_if_empty() const {
