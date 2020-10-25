@@ -18,6 +18,4 @@ namespace krul::interpreter {
     [[nodiscard]] bool is_defined(const variable_t& variable) const;
   };
 
-}
-
-
+} // namespace krul::interpreter

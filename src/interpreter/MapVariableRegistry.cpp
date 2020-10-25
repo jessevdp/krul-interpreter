@@ -16,4 +16,4 @@ namespace krul::interpreter {
     return _map.find(variable) != _map.end();
   }
 
-}
+} // namespace krul::interpreter

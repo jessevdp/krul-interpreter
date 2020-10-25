@@ -1,7 +1,7 @@
 #pragma once
 
-#include "types.h"
 #include "exception/UndefinedVariableException.h"
+#include "types.h"
 
 namespace krul::interpreter {
 
