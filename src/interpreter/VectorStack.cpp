@@ -1,6 +1,7 @@
 #include "VectorStack.h"
 
 #include <string>
+#include <sstream>
 
 namespace krul::interpreter {
   using namespace exception;
@@ -29,10 +30,24 @@ namespace krul::interpreter {
     return convert_to_int(peek());
   }
 
+  label_t VectorStack::pop_as_label() {
+    return convert_to_label(pop());
+  }
+
+  label_t VectorStack::peek_as_label() const {
+    return convert_to_label(peek());
+  }
+
   int VectorStack::convert_to_int(const value_t& item) {
     try {
       return std::stoi(item);
     } catch (const std::exception& e) { throw TypeConversionException(item, "int"); }
+  }
+
+  label_t VectorStack::convert_to_label(const value_t& item) {
+      int item_as_number = convert_to_int(item);
+      if (item_as_number < 0) throw TypeConversionException(item, "label_t");
+      return item_as_number;
   }
 
   void VectorStack::throw_if_empty() const {

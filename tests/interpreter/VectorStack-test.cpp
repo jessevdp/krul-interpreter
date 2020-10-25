@@ -125,3 +125,59 @@ SCENARIO("VectorStack can convert values to int", "[VectorStack]") {
     }
   }
 }
+
+SCENARIO("VectorStack can convert values to label_t", "[VectorStack]") {
+  VectorStack stack;
+
+  GIVEN("a value that can be interpreted as a label") {
+    stack.push("10");
+
+    WHEN("pop_as_label is called") {
+      label_t value = stack.pop_as_label();
+
+      THEN("the value is converted to int before being returned") {
+        REQUIRE(value == 10);
+      }
+    }
+
+    WHEN("peek_as_label is called") {
+      label_t value = stack.peek_as_label();
+
+      THEN("the value is converted to int before being returned") {
+        REQUIRE(value == 10);
+      }
+    }
+  }
+
+  GIVEN("a negative numeric value") {
+    stack.push("-10");
+
+    WHEN("pop_as_label is called") {
+      THEN("it throws a TypeConversionException") {
+        REQUIRE_THROWS_AS(stack.pop_as_label(), TypeConversionException);
+      }
+    }
+
+    WHEN("peek_as_label is called") {
+      THEN("it throws a TypeConversionException") {
+        REQUIRE_THROWS_AS(stack.peek_as_label(), TypeConversionException);
+      }
+    }
+  }
+
+  GIVEN("a value that can NOT be interpreted as a label_t") {
+    stack.push("foo");
+
+    WHEN("pop_as_label is called") {
+      THEN("it throws a TypeConversionException") {
+        REQUIRE_THROWS_AS(stack.pop_as_label(), TypeConversionException);
+      }
+    }
+
+    WHEN("peek_as_label is called") {
+      THEN("it throws a TypeConversionException") {
+        REQUIRE_THROWS_AS(stack.peek_as_label(), TypeConversionException);
+      }
+    }
+  }
+}
