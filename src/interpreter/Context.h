@@ -17,6 +17,8 @@ namespace krul::interpreter {
     virtual VariableRegistry& variables() const = 0;
     virtual CallStack& call_stack() const = 0;
 
+    virtual line_t current_line() const = 0;
+
     /**
      * Set the line # that determines which instruction is executed next.
      * @throws std::out_of_range
