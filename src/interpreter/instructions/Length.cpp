@@ -9,4 +9,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(result);
   }
 
+  std::unique_ptr<Instruction> Length::clone() const {
+    return std::make_unique<Length>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

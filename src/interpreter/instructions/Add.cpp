@@ -10,4 +10,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
+  std::unique_ptr<Instruction> Add::clone() const {
+    return std::make_unique<Add>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

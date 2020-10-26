@@ -9,4 +9,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(result);
   }
 
+  std::unique_ptr<Instruction> Concatenate::clone() const {
+    return std::make_unique<Concatenate>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

@@ -11,4 +11,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
+  std::unique_ptr<Instruction> LabelReference::clone() const {
+    return std::make_unique<LabelReference>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

@@ -11,4 +11,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
+  std::unique_ptr<Instruction> AbsoluteValue::clone() const {
+    return std::make_unique<AbsoluteValue>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

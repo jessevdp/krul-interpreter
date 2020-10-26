@@ -10,4 +10,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
+  std::unique_ptr<Instruction> Divide::clone() const {
+    return std::make_unique<Divide>(*this);
+  }
+
 } // namespace krul::interpreter::instructions
