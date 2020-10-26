@@ -5,7 +5,7 @@
 
 namespace krul::interpreter::instructions {
 
-  class Function : private Goto {
+  class Function : public Goto {
   public:
     void execute(Context& context) const override;
   };

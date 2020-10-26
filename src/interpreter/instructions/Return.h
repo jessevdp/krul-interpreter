@@ -4,7 +4,7 @@
 
 namespace krul::interpreter::instructions {
 
-  class Return : private Instruction {
+  class Return : public Instruction {
   public:
     void execute(Context& context) const override;
   };
