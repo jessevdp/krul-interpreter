@@ -9,4 +9,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(value);
   }
 
+  std::unique_ptr<Instruction> Negate::clone() const {
+    return std::make_unique<Negate>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

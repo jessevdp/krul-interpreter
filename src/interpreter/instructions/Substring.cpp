@@ -11,4 +11,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(substring);
   }
 
+  std::unique_ptr<Instruction> Substring::clone() const {
+    return std::make_unique<Substring>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

@@ -8,4 +8,8 @@ namespace krul::interpreter::instructions {
     Goto::execute(context);
   }
 
+  std::unique_ptr<Instruction> Function::clone() const {
+    return std::make_unique<Function>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

@@ -2,11 +2,11 @@
 
 #include "ParsingException.h"
 
-namespace krul::parser::exception {
+namespace krul::interpreter::exception {
 
   class UndefinedLabelException : public ParsingException {
   public:
-    UndefinedLabelException(const std::string& label_name);
+    explicit UndefinedLabelException(const std::string& label_name);
   };
 
 }

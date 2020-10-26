@@ -10,4 +10,8 @@ namespace krul::interpreter::instructions {
     if (a != b) { context.go_to_line(label); }
   }
 
+  std::unique_ptr<Instruction> GotoIfNotEqual::clone() const {
+    return std::make_unique<GotoIfNotEqual>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

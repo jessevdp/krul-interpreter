@@ -11,4 +11,8 @@ namespace krul::interpreter::instructions {
     context.stack().push(_value);
   }
 
+  std::unique_ptr<Instruction> StringLiteral::clone() const {
+    return std::make_unique<StringLiteral>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

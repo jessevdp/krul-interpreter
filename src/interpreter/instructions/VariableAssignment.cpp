@@ -12,4 +12,8 @@ namespace krul::interpreter::instructions {
     context.variables().set(_variable, value);
   }
 
+  std::unique_ptr<Instruction> VariableAssignment::clone() const {
+    return std::make_unique<VariableAssignment>(*this);
+  }
+
 } // namespace krul::interpreter::instructions

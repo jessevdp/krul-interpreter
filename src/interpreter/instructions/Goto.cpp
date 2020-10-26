@@ -7,4 +7,8 @@ namespace krul::interpreter::instructions {
     context.go_to_line(label);
   }
 
+  std::unique_ptr<Instruction> Goto::clone() const {
+    return std::make_unique<Goto>(*this);
+  }
+
 } // namespace krul::interpreter::instructions
