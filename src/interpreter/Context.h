@@ -3,6 +3,7 @@
 #include "CallStack.h"
 #include "Stack.h"
 #include "VariableRegistry.h"
+#include "LabelRegistry.h"
 #include "types.h"
 
 #include <stdexcept>
@@ -15,6 +16,7 @@ namespace krul::interpreter {
 
     virtual Stack& stack() const = 0;
     virtual VariableRegistry& variables() const = 0;
+    virtual LabelRegistry& labels() const = 0;
     virtual CallStack& call_stack() const = 0;
 
     virtual line_t current_line() const = 0;

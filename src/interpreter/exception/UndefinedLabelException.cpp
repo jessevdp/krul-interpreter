@@ -1,6 +1,6 @@
 #include "UndefinedLabelException.h"
 
-namespace krul::parser::exception {
+namespace krul::interpreter::exception {
 
   UndefinedLabelException::UndefinedLabelException(const std::string& label_name)
       : InterpretingException("Label '" + label_name + "' is not defined") {
