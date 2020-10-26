@@ -1,12 +1,12 @@
 #pragma once
 
-#include <exception>
-#include <stdexcept>
+#include "InterpretingException.h"
+
 #include <string>
 
 namespace krul::interpreter::exception {
 
-  class TypeConversionException : public std::logic_error {
+  class TypeConversionException : public InterpretingException {
   public:
     TypeConversionException(const std::string& value, const std::string& type_name);
   };

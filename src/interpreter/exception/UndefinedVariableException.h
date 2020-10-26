@@ -1,12 +1,12 @@
 #pragma once
 
-#include <exception>
-#include <stdexcept>
+#include "InterpretingException.h"
+
 #include <string>
 
 namespace krul::interpreter::exception {
 
-  class UndefinedVariableException : public std::logic_error {
+  class UndefinedVariableException : public InterpretingException {
   public:
     explicit UndefinedVariableException(const std::string& variable_name);
   };
