@@ -41,6 +41,10 @@
 #include "interpreter/instructions/Function.h"
 #include "interpreter/instructions/Return.h"
 
+// End of search
+#include "interpreter/instructions/End.h"
+
+// Standard library
 #include <exception>
 #include <memory>
 
@@ -157,6 +161,13 @@ namespace krul::parser {
       "fun", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Function>(); });
     register_supplier(
       "ret", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Return>(); });
+
+    //#endregion
+
+    //#region End
+
+    register_supplier(
+      "end", [](const std::string& arguments) -> auto { return std::make_unique<instructions::End>(); });
 
     //#endregion
   }

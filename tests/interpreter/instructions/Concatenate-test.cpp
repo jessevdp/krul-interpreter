@@ -14,7 +14,7 @@ TEST_CASE(
   "[Concatenate]") {
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
-  When(Method(stackMock, pop)).Return("hello").Return("world");
+  When(Method(stackMock, pop)).Return("world").Return("hello");
 
   Mock<Context> contextMock;
   When(Method(contextMock, stack)).AlwaysReturn(stackMock.get());

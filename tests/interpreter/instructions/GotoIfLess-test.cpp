@@ -24,7 +24,7 @@ TEST_CASE("GotoIfLess pops 3 values off the Stack (label, a, b), interprets a & 
   GotoIfLess instruction;
 
   SECTION("a < b -> jump") {
-    When(Method(stackMock, pop_as_int)).Return(1).Return(100);
+    When(Method(stackMock, pop_as_int)).Return(100).Return(1);
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line).Using(label)).Once();
   }
@@ -36,7 +36,7 @@ TEST_CASE("GotoIfLess pops 3 values off the Stack (label, a, b), interprets a & 
   }
 
   SECTION("a > b -> no jump") {
-    When(Method(stackMock, pop_as_int)).Return(100).Return(1);
+    When(Method(stackMock, pop_as_int)).Return(1).Return(100);
     instruction.execute(contextMock.get());
     Verify(Method(contextMock, go_to_line)).Never();
   }

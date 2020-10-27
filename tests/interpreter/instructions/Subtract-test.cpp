@@ -17,7 +17,7 @@ TEST_CASE("Subtract pops two integers off the Stack, subtracts the second from t
 
   Mock<Stack> stackMock;
   Fake(Method(stackMock, push));
-  When(Method(stackMock, pop_as_int)).Return(a).Return(b);
+  When(Method(stackMock, pop_as_int)).Return(b).Return(a);
 
   Mock<Context> contextMock;
   When(Method(contextMock, stack)).AlwaysReturn(stackMock.get());

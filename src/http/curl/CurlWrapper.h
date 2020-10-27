@@ -10,8 +10,7 @@ namespace krul::http::curl {
     CurlWrapper();
     ~CurlWrapper();
 
-    using unique_session_ptr = std::unique_ptr<CURL, void (*)(CURL*)>;
-    [[nodiscard]] unique_session_ptr createSession() const;
+    [[nodiscard]] std::unique_ptr<CURL, void (*)(CURL*)> createSession() const;
 
     // Remove copy and move
     CurlWrapper(const CurlWrapper&) = delete;

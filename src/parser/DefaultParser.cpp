@@ -54,12 +54,11 @@ namespace krul::parser {
                                                                      interpreter::LabelRegistry& label_registry) {
     std::vector<std::string> lines_with_instructions;
 
-    for (int i = 0; i < lines.size(); ++i) {
-      auto line = lines.at(i);
-
+    for (auto line : lines) {
       if (line.at(0) == ':') {
         label_name_t label_name = line.substr(1, line.size() - 1);
-        label_registry.set(label_name, i);
+        label_t line_nr = lines_with_instructions.size();
+        label_registry.set(label_name, line_nr);
       } else {
         lines_with_instructions.push_back(line);
       }

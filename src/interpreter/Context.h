@@ -27,6 +27,8 @@ namespace krul::interpreter {
      * @param line
      */
     virtual void go_to_line(line_t line) = 0;
+
+    virtual void found_end() = 0;
   };
 
 } // namespace krul::interpreter

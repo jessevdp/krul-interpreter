@@ -2,14 +2,14 @@
 
 namespace krul::http::curl {
   CurlWrapper::CurlWrapper() {
-    curl_global_init(CURL_GLOBAL_ALL);
+    curl_global_init(CURL_GLOBAL_DEFAULT);
   }
 
   CurlWrapper::~CurlWrapper() {
     curl_global_cleanup();
   }
 
-  CurlWrapper::unique_session_ptr CurlWrapper::createSession() const {
+  std::unique_ptr<CURL, void (*)(CURL*)> CurlWrapper::createSession() const {
     return {curl_easy_init(), curl_easy_cleanup};
   }
 } // namespace krul::http::curl

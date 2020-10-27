@@ -10,8 +10,8 @@ namespace krul::interpreter {
 
   public:
     Result(const value_t& return_value, bool is_end_of_search);
-    value_t return_value() const;
-    bool is_end_of_search() const;
+    [[nodiscard]] value_t return_value() const;
+    [[nodiscard]] bool is_end_of_search() const;
   };
 
 } // namespace krul::interpreter
