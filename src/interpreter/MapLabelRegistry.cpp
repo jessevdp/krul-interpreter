@@ -20,4 +20,4 @@ namespace krul::interpreter {
     return std::make_unique<MapLabelRegistry>(*this);
   }
 
-}
+} // namespace krul::interpreter

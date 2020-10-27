@@ -20,4 +20,4 @@ namespace krul::interpreter {
     bool is_defined(const label_name_t& label) const;
   };
 
-}
+} // namespace krul::interpreter

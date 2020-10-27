@@ -14,12 +14,11 @@ namespace krul::parser {
     std::unique_ptr<interpreter::LabelRegistry> _label_registry;
 
   public:
-    ParsedProgram(std::vector<std::unique_ptr<interpreter::Instruction>>& _instructions, std::unique_ptr<interpreter::LabelRegistry>& _label_registry);
+    ParsedProgram(std::vector<std::unique_ptr<interpreter::Instruction>>& _instructions,
+                  std::unique_ptr<interpreter::LabelRegistry>& _label_registry);
 
     [[nodiscard]] std::unique_ptr<interpreter::LabelRegistry> label_registry() const;
     [[nodiscard]] std::vector<std::unique_ptr<interpreter::Instruction>> instructions() const;
   };
 
-}
-
-
+} // namespace krul::parser

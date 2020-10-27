@@ -9,6 +9,4 @@ namespace krul::parser::exception {
     explicit UnknownInstructionException(const std::string& instruction);
   };
 
-}
-
-
+} // namespace krul::parser::exception

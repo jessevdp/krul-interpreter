@@ -1,9 +1,9 @@
 #pragma once
 
 #include "CallStack.h"
+#include "LabelRegistry.h"
 #include "Stack.h"
 #include "VariableRegistry.h"
-#include "LabelRegistry.h"
 #include "types.h"
 
 #include <stdexcept>

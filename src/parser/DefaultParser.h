@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Parser.h"
 #include "InstructionFactory.h"
+#include "Parser.h"
 
 #include <memory>
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace krul::parser {
 
@@ -29,10 +29,9 @@ namespace krul::parser {
 
   private:
     static std::vector<std::string> split_lines(const std::string& string);
-    static std::vector<std::string> filter_and_register_labels(const std::vector<std::string>& lines, interpreter::LabelRegistry& label_registry);
+    static std::vector<std::string> filter_and_register_labels(const std::vector<std::string>& lines,
+                                                               interpreter::LabelRegistry& label_registry);
     static std::vector<InstructionDefinition> convert_to_definitions(const std::vector<std::string>& lines);
   };
 
-}
-
-
+} // namespace krul::parser

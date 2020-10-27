@@ -10,6 +10,4 @@ namespace krul::parser::exception {
     explicit ParsingException(const std::string& message);
   };
 
-}
-
-
+} // namespace krul::parser::exception

@@ -20,7 +20,6 @@ namespace krul::interpreter {
     virtual label_t get(const label_name_t& label) const = 0;
 
     virtual void set(const label_name_t& label, label_t value) = 0;
-
   };
 
-}
+} // namespace krul::interpreter

@@ -15,4 +15,4 @@ namespace krul::interpreter {
     virtual Result execute() = 0;
   };
 
-}
+} // namespace krul::interpreter

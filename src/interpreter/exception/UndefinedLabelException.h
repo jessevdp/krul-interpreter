@@ -11,4 +11,4 @@ namespace krul::interpreter::exception {
     explicit UndefinedLabelException(const std::string& label_name);
   };
 
-}
+} // namespace krul::interpreter::exception
