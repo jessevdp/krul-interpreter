@@ -3,6 +3,8 @@
 #include "exception/UndefinedLabelException.h"
 #include "types.h"
 
+#include <memory>
+
 namespace krul::interpreter {
 
   class LabelRegistry {
@@ -15,10 +17,9 @@ namespace krul::interpreter {
      * @throws UndefinedLabelException when the label has not been set
      * @param label name of the label to get
      */
-    virtual label_t get(const label_name_t& label) = 0;
+    virtual label_t get(const label_name_t& label) const = 0;
 
     virtual void set(const label_name_t& label, label_t value) = 0;
-
   };
 
-}
+} // namespace krul::interpreter

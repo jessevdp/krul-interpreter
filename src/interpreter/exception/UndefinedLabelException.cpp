@@ -6,4 +6,4 @@ namespace krul::interpreter::exception {
       : InterpretingException("Label '" + label_name + "' is not defined") {
   }
 
-} // namespace krul::parser::exception
+} // namespace krul::interpreter::exception

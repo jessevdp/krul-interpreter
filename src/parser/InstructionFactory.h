@@ -1,7 +1,7 @@
 #pragma once
 
-#include "interpreter/Instruction.h"
 #include "exception/UnknownInstructionException.h"
+#include "interpreter/Instruction.h"
 
 #include <functional>
 #include <memory>

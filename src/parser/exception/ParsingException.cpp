@@ -5,4 +5,4 @@ namespace krul::parser::exception {
   ParsingException::ParsingException(const std::string& message) : std::logic_error(message) {
   }
 
-}
+} // namespace krul::parser::exception

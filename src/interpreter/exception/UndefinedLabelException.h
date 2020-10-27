@@ -2,6 +2,8 @@
 
 #include "InterpretingException.h"
 
+#include <string>
+
 namespace krul::interpreter::exception {
 
   class UndefinedLabelException : public InterpretingException {
@@ -9,4 +11,4 @@ namespace krul::interpreter::exception {
     explicit UndefinedLabelException(const std::string& label_name);
   };
 
-}
+} // namespace krul::interpreter::exception

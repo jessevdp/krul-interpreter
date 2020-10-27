@@ -10,5 +10,4 @@ namespace krul::interpreter::instructions {
     [[nodiscard]] std::unique_ptr<Instruction> clone() const override;
   };
 
-
 } // namespace krul::interpreter::instructions
