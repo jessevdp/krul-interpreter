@@ -1,10 +1,12 @@
 #pragma once
 
-#include "ParsingException.h"
+#include "InterpretingException.h"
+
+#include <string>
 
 namespace krul::interpreter::exception {
 
-  class UndefinedLabelException : public ParsingException {
+  class UndefinedLabelException : public InterpretingException {
   public:
     explicit UndefinedLabelException(const std::string& label_name);
   };
