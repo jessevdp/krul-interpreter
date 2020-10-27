@@ -72,10 +72,8 @@ namespace krul::parser {
       [](const std::string& arguments) -> auto { return std::make_unique<instructions::StringLiteral>(arguments); });
 
     register_supplier(
-      ">", [](const std::string& arguments) -> auto {
-        label_t value = convert_to_int(arguments);
-        return std::make_unique<instructions::LabelReference>(value);
-      });
+      ">",
+      [](const std::string& arguments) -> auto { return std::make_unique<instructions::LabelReference>(arguments); });
 
     register_supplier(
       "=", [](const std::string& arguments) -> auto {
@@ -92,78 +90,79 @@ namespace krul::parser {
     //#region Integer operations
 
     register_supplier(
-      "add", [](...) -> auto { return std::make_unique<instructions::Add>(); });
+      "add", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Add>(); });
     register_supplier(
-      "sub", [](...) -> auto { return std::make_unique<instructions::Subtract>(); });
+      "sub", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Subtract>(); });
     register_supplier(
-      "mul", [](...) -> auto { return std::make_unique<instructions::Multiply>(); });
+      "mul", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Multiply>(); });
     register_supplier(
-      "div", [](...) -> auto { return std::make_unique<instructions::Divide>(); });
+      "div", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Divide>(); });
     register_supplier(
-      "mod", [](...) -> auto { return std::make_unique<instructions::Modulo>(); });
+      "mod", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Modulo>(); });
     register_supplier(
-      "neg", [](...) -> auto { return std::make_unique<instructions::Negate>(); });
+      "neg", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Negate>(); });
     register_supplier(
-      "abs", [](...) -> auto { return std::make_unique<instructions::AbsoluteValue>(); });
+      "abs", [](const std::string& arguments) -> auto { return std::make_unique<instructions::AbsoluteValue>(); });
     register_supplier(
-      "inc", [](...) -> auto { return std::make_unique<instructions::Increment>(); });
+      "inc", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Increment>(); });
     register_supplier(
-      "dec", [](...) -> auto { return std::make_unique<instructions::Decrement>(); });
+      "dec", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Decrement>(); });
 
     //#endregion
 
     //#region String operations
 
     register_supplier(
-      "dup", [](...) -> auto { return std::make_unique<instructions::Duplicate>(); });
+      "dup", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Duplicate>(); });
     register_supplier(
-      "rev", [](...) -> auto { return std::make_unique<instructions::Reverse>(); });
+      "rev", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Reverse>(); });
     register_supplier(
-      "slc", [](...) -> auto { return std::make_unique<instructions::Substring>(); });
+      "slc", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Substring>(); });
     register_supplier(
-      "idx", [](...) -> auto { return std::make_unique<instructions::Index>(); });
+      "idx", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Index>(); });
     register_supplier(
-      "cat", [](...) -> auto { return std::make_unique<instructions::Concatenate>(); });
+      "cat", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Concatenate>(); });
     register_supplier(
-      "len", [](...) -> auto { return std::make_unique<instructions::Length>(); });
+      "len", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Length>(); });
     register_supplier(
-      "rot", [](...) -> auto { return std::make_unique<instructions::Rot13>(); });
+      "rot", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Rot13>(); });
     register_supplier(
-      "enl", [](...) -> auto { return std::make_unique<instructions::Newline>(); });
+      "enl", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Newline>(); });
 
     //#endregion
 
     //#region Tests & jumps
 
     register_supplier(
-      "gto", [](...) -> auto { return std::make_unique<instructions::Goto>(); });
+      "gto", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Goto>(); });
     register_supplier(
-      "geq", [](...) -> auto { return std::make_unique<instructions::GotoIfEqual>(); });
+      "geq", [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfEqual>(); });
     register_supplier(
-      "gne", [](...) -> auto { return std::make_unique<instructions::GotoIfNotEqual>(); });
+      "gne", [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfNotEqual>(); });
     register_supplier(
-      "glt", [](...) -> auto { return std::make_unique<instructions::GotoIfLess>(); });
+      "glt", [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfLess>(); });
     register_supplier(
-      "gle", [](...) -> auto { return std::make_unique<instructions::GotoIfLessOrEqual>(); });
+      "gle", [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfLessOrEqual>(); });
     register_supplier(
-      "ggt", [](...) -> auto { return std::make_unique<instructions::GotoIfGreater>(); });
+      "ggt", [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfGreater>(); });
     register_supplier(
-      "gge", [](...) -> auto { return std::make_unique<instructions::GotoIfGreaterOrEqual>(); });
+      "gge",
+      [](const std::string& arguments) -> auto { return std::make_unique<instructions::GotoIfGreaterOrEqual>(); });
 
     //#endregion
 
     //#region Functions
 
     register_supplier(
-      "fun", [](...) -> auto { return std::make_unique<instructions::Function>(); });
+      "fun", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Function>(); });
     register_supplier(
-      "ret", [](...) -> auto { return std::make_unique<instructions::Return>(); });
+      "ret", [](const std::string& arguments) -> auto { return std::make_unique<instructions::Return>(); });
 
     //#endregion
   }
 
   std::unique_ptr<interpreter::Instruction> DefaultInstructionFactory::create(const std::string& instruction,
-                                                                           const std::string& arguments) const {
+                                                                              const std::string& arguments) const {
     if (!has_supplier(instruction)) throw UnknownInstructionException {instruction};
     InstructionSupplier supplier = _suppliers.at(instruction);
     return supplier(arguments);
